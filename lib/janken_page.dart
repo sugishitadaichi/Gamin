@@ -22,12 +22,31 @@ class JanekenFullPage extends StatefulWidget {
 }
 
 class _JanekenFullPageState extends State<JanekenFullPage> {
-  String myHand = '✌️';
+  String computedHand = '👊';
+  String myHand = '👊';
 
   void selectHand(String selectedHand) {
     myHand = selectedHand;
-    print(selectedHand);
+    computerHand();
     setState(() {});
+  }
+
+  void computerHand() {
+    final randomNumber = Random().nextInt(3);
+    computedHand = randomNumberToHand(randomNumber);
+  }
+
+  String randomNumberToHand(int randomNumber) {
+    switch (randomNumber) {
+      case 0:
+        return '👊';
+      case 1:
+        return '✌️';
+      case 2:
+        return '✋';
+      default:
+        return '👊';
+    }
   }
 
   @override
@@ -41,6 +60,15 @@ class _JanekenFullPageState extends State<JanekenFullPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              computedHand,
+              style: TextStyle(
+                fontSize: 32,
+              ),
+            ),
+            SizedBox(
+              height: 64,
+            ),
             Text(
               myHand,
               style: TextStyle(
