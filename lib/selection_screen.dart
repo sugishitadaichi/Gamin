@@ -1,46 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:gamin/janken_page.dart';
 
-class selectionScreen extends StatelessWidget {
+class SelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('遊び選択　🎮'),
+        title: const Text('遊び画面 🎮'),
         backgroundColor: Colors.blue,
       ),
       body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                onPressed: () {
-                  //ボタンを押した時に呼ばれるコードを書く
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => JankenPage(
-                  //       title: 'janken_page.dart',
-                  //     ),
-                  //     fullscreenDialog: true,
-                  //   ),
-                  // );
-                },
-                child: const Text('じゃんけん'),
+        child: ElevatedButton(
+          onPressed: () {
+            //ボタンを押した時に呼ばれるコードを書く
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => JankenPage(),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  //ボタンを押した時に呼ばれるコードを書く
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => SecondPage(),
-                  //     fullscreenDialog: true,
-                  //   ),
-                  // );
-                },
-                child: const Text('チンチロ'),
-              ),
-            ]),
+            );
+          },
+          child: const Text('じゃんけん'),
+        ),
       ),
     );
   }
