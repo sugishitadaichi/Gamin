@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class JanekenFullPage extends StatefulWidget {
-  const JanekenFullPage({super.key});
+class JankenPage extends StatefulWidget {
+  const JankenPage({super.key});
 
   @override
-  State<JanekenFullPage> createState() => _JanekenFullPageState();
+  State<JankenPage> createState() => _JankenPageState();
 }
 
-class _JanekenFullPageState extends State<JanekenFullPage> {
+class _JankenPageState extends State<JankenPage> {
   String computedHand = '👊';
   String myHand = '👊';
   String result = '引き分け';
@@ -52,41 +52,67 @@ class _JanekenFullPageState extends State<JanekenFullPage> {
 
   @override
   Widget build(BuildContext context) {
+    Color resultColor;
+
+    switch (result) {
+      case '勝ち':
+        resultColor = Colors.red;
+        break;
+      case '負け':
+        resultColor = Colors.blue;
+        break;
+      case '引き分け':
+        resultColor = Colors.green;
+        break;
+      default:
+        resultColor = Colors.black;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('じゃんけん'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.red,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              result,
+              '勝敗は・・・',
               style: TextStyle(
-                fontSize: 32,
+                fontSize: 25,
               ),
             ),
             SizedBox(
-              height: 64,
+              height: 20,
+            ),
+            Text(
+              '$result！',
+              style: TextStyle(
+                fontSize: 50,
+                color: resultColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 40,
             ),
             Text(
               computedHand,
               style: TextStyle(
-                fontSize: 32,
+                fontSize: 100,
               ),
             ),
             SizedBox(
-              height: 64,
+              height: 40,
             ),
             Text(
               myHand,
               style: TextStyle(
-                fontSize: 32,
+                fontSize: 100,
               ),
             ),
             SizedBox(
-              height: 32,
+              height: 40,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -95,19 +121,37 @@ class _JanekenFullPageState extends State<JanekenFullPage> {
                   onPressed: () {
                     selectHand('👊');
                   },
-                  child: Text('👊'),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(100, 50),
+                  ),
+                  child: Text(
+                    '👊',
+                    style: TextStyle(fontSize: 50),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     selectHand('✌️');
                   },
-                  child: Text('✌️'),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(100, 50),
+                  ),
+                  child: Text(
+                    '✌️',
+                    style: TextStyle(fontSize: 50),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     selectHand('✋');
                   },
-                  child: Text('✋'),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(100, 50),
+                  ),
+                  child: Text(
+                    '✋',
+                    style: TextStyle(fontSize: 50),
+                  ),
                 ),
               ],
             ),

@@ -16,7 +16,7 @@ class SelectionScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => JanekenFullPage(),
+                builder: (context) => JankenPage(),
               ),
             );
           },
