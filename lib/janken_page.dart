@@ -13,10 +13,15 @@ class _JankenPageState extends State<JankenPage> {
   String myHand = '👊';
   String result = '引き分け';
 
+  int winCount = 0;
+  int loseCount = 0;
+  int drawCount = 0;
+
   void selectHand(String selectedHand) {
     myHand = selectedHand;
     computerHand();
     judge();
+    judgeCount();
     setState(() {});
   }
 
@@ -47,6 +52,18 @@ class _JankenPageState extends State<JankenPage> {
       result = '勝ち';
     } else {
       result = '負け';
+    }
+  }
+
+  void judgeCount() {
+    if (computedHand == myHand) {
+      drawCount++;
+    } else if (myHand == '👊' && computedHand == '✌️' ||
+        myHand == '✌️' && computedHand == '✋' ||
+        myHand == '✋' && computedHand == '👊') {
+      winCount++;
+    } else {
+      loseCount++;
     }
   }
 
@@ -94,7 +111,7 @@ class _JankenPageState extends State<JankenPage> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 30,
             ),
             Text(
               computedHand,
@@ -112,7 +129,7 @@ class _JankenPageState extends State<JankenPage> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -154,6 +171,15 @@ class _JankenPageState extends State<JankenPage> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Text(
+              '勝ち: $winCount  負け: $loseCount  引き分け: $drawCount',
+              style: TextStyle(
+                fontSize: 25,
+              ),
             ),
           ],
         ),
