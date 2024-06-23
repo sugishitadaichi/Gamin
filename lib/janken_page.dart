@@ -1,19 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-void main() {
-  runApp(JankenPage());
-}
-
-class JankenPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: JanekenFullPage(),
-    );
-  }
-}
-
 class JanekenFullPage extends StatefulWidget {
   const JanekenFullPage({super.key});
 
@@ -24,10 +11,12 @@ class JanekenFullPage extends StatefulWidget {
 class _JanekenFullPageState extends State<JanekenFullPage> {
   String computedHand = '👊';
   String myHand = '👊';
+  String result = '引き分け';
 
   void selectHand(String selectedHand) {
     myHand = selectedHand;
     computerHand();
+    judge();
     setState(() {});
   }
 
@@ -49,6 +38,18 @@ class _JanekenFullPageState extends State<JanekenFullPage> {
     }
   }
 
+  void judge() {
+    if (computedHand == myHand) {
+      result = '引き分け';
+    } else if (myHand == '👊' && computedHand == '✌️' ||
+        myHand == '✌️' && computedHand == '✋' ||
+        myHand == '✋' && computedHand == '👊') {
+      result = '勝ち';
+    } else {
+      result = '負け';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +61,15 @@ class _JanekenFullPageState extends State<JanekenFullPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              result,
+              style: TextStyle(
+                fontSize: 32,
+              ),
+            ),
+            SizedBox(
+              height: 64,
+            ),
             Text(
               computedHand,
               style: TextStyle(
