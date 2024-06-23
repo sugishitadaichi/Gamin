@@ -15,7 +15,6 @@ class _JankenPageState extends State<JankenPage> {
 
   int winCount = 0;
   int loseCount = 0;
-  int drawCount = 0;
 
   void selectHand(String selectedHand) {
     myHand = selectedHand;
@@ -57,7 +56,6 @@ class _JankenPageState extends State<JankenPage> {
 
   void judgeCount() {
     if (computedHand == myHand) {
-      drawCount++;
     } else if (myHand == '👊' && computedHand == '✌️' ||
         myHand == '✌️' && computedHand == '✋' ||
         myHand == '✋' && computedHand == '👊') {
@@ -176,7 +174,7 @@ class _JankenPageState extends State<JankenPage> {
               height: 40,
             ),
             Text(
-              '勝ち: $winCount  負け: $loseCount  引き分け: $drawCount',
+              '勝ち: $winCount  負け: $loseCount',
               style: TextStyle(
                 fontSize: 25,
               ),
